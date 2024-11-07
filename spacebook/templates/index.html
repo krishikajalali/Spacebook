@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spacebook</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+        <a href="/admin_login">Admin Login</a>
+    </nav>
+    <div class="container">
+        <h1>Welcome to Spacebook!</h1>
+        <p>Socialize with astronauts all over the galaxy!</p>
+
+        <!-- Buttons for Login and Register -->
+        <div class="buttons">
+            <button onclick="window.location.href='{{ url_for('login') }}'">Login</button>
+            <br><br>
+            <button onclick="window.location.href='{{ url_for('register') }}'">Register</button>
+            <br><br>
+            <button onclick="window.location.href='{{ url_for('admin_login') }}'" style="background-color: #AF1740;">Admin Login</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

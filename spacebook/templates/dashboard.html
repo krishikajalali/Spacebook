@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Spacebook</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+        <a href="/admin_login">Admin Login</a>
+    </nav>
+    <div class="container">
+        <h1>Captain-Admin Dashboard</h1>
+        <p>Total Users: {{ total_users }}</p>
+        <p>Male Users: {{ male_users }}</p>
+        <p>Female Users: {{ female_users }}</p>
+        <p>Total Posts: {{ total_posts }}</p>
+        <h2>User Posts:</h2>
+        <ul>
+            {% for user in user_posts %}
+                <li>{{ user.username }}: {{ user.post_count }} posts</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

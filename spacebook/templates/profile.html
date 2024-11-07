@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Spacebook</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+        <a href="/admin_login">Admin Login</a>
+    </nav>
+    <div class="container">
+        <h1>Welcome, {{ session['username'] }} (Astronaut)</h1>
+        
+        <!-- User Information -->
+        <div class="user-info">
+            <p><strong>Name:</strong> {{ session['name'] }}</p>
+            <p><strong>Age:</strong> {{ session['age'] }}</p>
+            <p><strong>Gender:</strong> {{ session['gender'] }}</p>
+            <p><strong>Profession:</strong> {{ session['profession'] }}</p>
+            <p><strong>Bio:</strong> {{ session['bio'] }}</p>
+        </div>
+
+        <hr>
+
+        <!-- User's Posts -->
+        <div class="user-posts">
+            <h2>Your Posts:</h2>
+            {% if posts %}
+                <ul>
+                    {% for post in posts %}
+                        <li>
+                            <p>{{ post[2] }} <em>({{ post[3] }})</em></p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>You haven't posted anything yet. Start by sharing your thoughts!</p>
+            {% endif %}
+        </div>
+
+        <hr>
+
+        <!-- Create a new post -->
+        <form action="{{ url_for('post') }}" method="POST">
+            <textarea name="content" placeholder="What’s on your mind?" required></textarea><br>
+            <button type="submit">Post</button>
+        </form>
+
+        <hr>
+
+        <!-- Account deletion -->
+        <form action="{{ url_for('delete_account') }}" method="POST" onsubmit="return confirm('Are you sure you want to delete your account? This cannot be undone.')">
+            <button type="submit" style="background-color: #AF1740; color: white;">Delete Account</button>
+        </form>
+    </br>
+        <a href="{{ url_for('index') }}">Go Back to Home</a>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
